@@ -1,6 +1,10 @@
 package files
 
-import "github.com/v-grabko1999/operations"
+import (
+	"io/ioutil"
+
+	"github.com/v-grabko1999/operations"
+)
 
 type Files struct {
 	op *operations.Operations
@@ -18,7 +22,7 @@ func (f *Files) ReadFile(file string) ([]byte, error) {
 	var err error
 
 	f.op.ReadLock(file, func() {
-		b, err = readFile(file)
+		b, err = ioutil.ReadFile(file)
 	})
 	return b, err
 }
@@ -27,7 +31,7 @@ func (f *Files) ReadFile(file string) ([]byte, error) {
 func (f *Files) WriteFile(file string, data []byte) error {
 	var err error
 	f.op.WriteLock(file, func() {
-		err = writeFile(file, data)
+		err = ioutil.WriteFile(file, data, 0777)
 	})
 	return err
 }
