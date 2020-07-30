@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-var f *Operations = New()
+var f *Files = New()
 
 func TestRead(t *testing.T) {
 	b, err := f.ReadFile("./tests/test_file.txt")
