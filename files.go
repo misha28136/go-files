@@ -21,7 +21,6 @@ func New() *Files {
 //File contains a mutex for each file the package worked with
 type File struct {
 	sync.RWMutex
-	data []byte
 }
 
 //ReadFile thread-safe reading file
