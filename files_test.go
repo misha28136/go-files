@@ -36,6 +36,7 @@ func TestThreadSafeFile(t *testing.T) {
 				t.Error("filr read data damage: Expected: `test_write_file` Received: `" + string(b) + "`")
 			}
 			i++
+			exit
 		}
 	}
 
@@ -46,18 +47,15 @@ func TestThreadSafeFile(t *testing.T) {
 				t.Log("Writer worker: ok")
 				break
 			}
-			err := f.WriteFile("./tests/test_write_file.txt", []byte("test_write_file"))
+			err := f.WriteFile("/tests/test_write_file.txt", []byte("test_write_file"))
 			if err != nil {
 				t.Error("Worker write", err)
 			}
 			i++
+		        exit
 		}
 	}
 
-	go r()
-	go r()
-	go r()
-	go r()
 	go r()
 	go w()
 	w()
