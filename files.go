@@ -8,21 +8,13 @@ import (
 
 //Files thread-safe struct package
 type Files struct {
-	cache *cache
-}
-
-type cache struct {
-	is      bool
-	storage *hashmap.HashMap
+	operation *hashmap.HashMap
 }
 
 //New created struct Files
 func New() *Files {
 	return &Files{
-		cache: &cache{
-			is:      false,
-			storage: &hashmap.HashMap{},
-		},
+		operation: &hashmap.HashMap{},
 	}
 }
 
@@ -34,7 +26,7 @@ type File struct {
 
 //ReadFile thread-safe reading file
 func (f *Files) ReadFile(file string) ([]byte, error) {
-	amount, ok := f.cache.storage.Get(file)
+	amount, ok := f.operation.Get(file)
 	if ok {
 		q := amount.(*File)
 		q.RLock()
@@ -43,14 +35,14 @@ func (f *Files) ReadFile(file string) ([]byte, error) {
 		return b, err
 	}
 	q := new(File)
-	f.cache.storage.Set(file, q)
+	f.operation.Set(file, q)
 	return f.ReadFile(file)
 
 }
 
 //WriteFile thread-safe write file
 func (f *Files) WriteFile(file string, data []byte) error {
-	amount, ok := f.cache.storage.Get(file)
+	amount, ok := f.operation.Get(file)
 	if ok {
 		q := amount.(*File)
 		q.Lock()
@@ -59,7 +51,7 @@ func (f *Files) WriteFile(file string, data []byte) error {
 		return err
 	}
 	q := new(File)
-	f.cache.storage.Set(file, q)
+	f.operation.Set(file, q)
 	return f.WriteFile(file, data)
 
 }
