@@ -1,0 +1,6 @@
+github.com/cornelk/hashmap v1.0.1 h1:RXGcy29hEdLLV8T6aK4s+BAd4tq4+3Hq50N2GoG0uIg=
+github.com/cornelk/hashmap v1.0.1/go.mod h1:8wbysTUDnwJGrPZ1Iwsou3m+An6sldFrJItjRhfegCw=
+github.com/dchest/siphash v1.1.0 h1:1Rs9eTUlZLPBEvV+2sTaM8O0NWn0ppbgqS7p11aWawI=
+github.com/dchest/siphash v1.1.0/go.mod h1:q+IRvb2gOSrUnYoPqHiyHXS0FOBBOdl6tONBlVnOnt4=
+github.com/v-grabko1999/operations v0.0.0-20200730174336-a927f55bba2f h1:QuM9bs0rXXhNZSQK5979UoW5viuoteK6VeTsVB/4sd8=
+github.com/v-grabko1999/operations v0.0.0-20200730174336-a927f55bba2f/go.mod h1:tsMPhgh5jRIKTTHMMg37C9m7EX3yxA0XXH5Kw3dRdAg=
