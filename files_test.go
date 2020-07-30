@@ -61,4 +61,5 @@ func TestThreadSafeFile(t *testing.T) {
 	go r()
 	go w()
 	w()
+
 }
